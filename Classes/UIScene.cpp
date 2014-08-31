@@ -1,5 +1,8 @@
 #include "UIScene.h"
 #include "LevelScene.h"
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
 
 Scene* UIScene::createScene()
 {
@@ -40,5 +43,7 @@ bool UIScene::init()
 
 void UIScene::menuStartCallback(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
 	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, LevelScene::create()));
 }

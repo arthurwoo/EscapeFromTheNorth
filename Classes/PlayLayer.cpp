@@ -6,6 +6,10 @@
 #include "SoldierTower.h"
 #include "GameManager.h"
 #include "LoadLevelInfo.h"
+#include "SimpleAudioEngine.h"
+#include "LevelScene.h"
+
+using namespace CocosDenshion;
 
 PlayLayer::PlayLayer():spriteSheet(NULL), map(NULL), objects(NULL), pointsVector(NULL), money(0), 
 						chooseTowerPanel(NULL), towerMatrix(NULL), groupCounter(0), isSuccessful(false), playerHp(100),
@@ -107,6 +111,8 @@ void PlayLayer::addEnemy()
 
 	if(groupEnemy->getType1Num() > 0)
 	{
+		SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/appear.wav").c_str(), false);
+
 		enemy = Ghost::createGhost(pointsVector, groupEnemy->getType1Hp());
 		groupEnemy->setType1Num(groupEnemy->getType1Num() - 1);
 	}
@@ -424,8 +430,8 @@ void PlayLayer::initToolLayer()
 
 	//toolbar bg
 	Sprite* spriteTool = Sprite::createWithSpriteFrameName("toolbg.png");
-	spriteTool->setAnchorPoint(Point(0.5f, 1));
-	spriteTool->setPosition(Point(winSize.width / 2, winSize.height));
+	spriteTool->setAnchorPoint(Point(0, 1));
+	spriteTool->setPosition(Point(0, winSize.height));
 	spriteTool->setTag(1);
 	toolLayer->addChild(spriteTool);
 
@@ -460,4 +466,22 @@ void PlayLayer::initToolLayer()
 	groupLabel->setAnchorPoint(Point(0.5f, 0.5f));
 	groupLabel->setPosition(Point(spriteTool->getContentSize().width / 2, spriteTool->getContentSize().height / 2));
 	spriteTool->addChild(groupLabel);
+
+	//back button
+	Sprite* back = Sprite::createWithSpriteFrameName("backNormal.png");
+	Sprite* backOver = Sprite::createWithSpriteFrameName("backOver.png");
+	MenuItemSprite* pauseItem = MenuItemSprite::create(back, backOver, CC_CALLBACK_1(PlayLayer::menuBackCallback, this));
+	pauseItem->setAnchorPoint(Point(0, 0));
+	pauseItem->setPosition(Point(0, 0));
+	Menu* menu = Menu::create(pauseItem, NULL);
+	menu->setPosition(Point(spriteTool->getContentSize().width, 0));
+	spriteTool->addChild(menu);
+}
+
+void PlayLayer::menuBackCallback(Ref* pSender)
+{
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
+	instance->clear();
+	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LevelScene::create()));
 }

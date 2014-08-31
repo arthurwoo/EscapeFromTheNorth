@@ -2,6 +2,9 @@
 #include "PlayLayer.h"
 #include "LevelScene.h"
 #include "GameManager.h"
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
 
 #define STAR_NUMBER (3)
 
@@ -75,6 +78,8 @@ void LevelInfoScene::addBackGround()
 
 void LevelInfoScene::menuStartCallback(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
 	info = LoadLevelInfo::createLoadLevelInfo(fileName.c_str());
 	info->readLevelInfo();
 	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, PlayLayer::createScene()));
@@ -82,5 +87,7 @@ void LevelInfoScene::menuStartCallback(Ref* pSender)
 
 void LevelInfoScene::menuBackCallback(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
 	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, LevelScene::create()));
 }

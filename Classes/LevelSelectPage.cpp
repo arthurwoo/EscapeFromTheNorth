@@ -1,5 +1,8 @@
 #include "LevelSelectPage.h"
 #include "LevelInfoScene.h"
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
 
 #define LEVEL_ROW (2)
 #define LEVEL_COL (3)
@@ -64,6 +67,8 @@ bool LevelSelectPage::initLevelPage(const std::string& bgName, int level)
 
 void LevelSelectPage::menuStartCallback(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
 	auto button = (Sprite*)pSender;
 
 	char buffer[20] = {};

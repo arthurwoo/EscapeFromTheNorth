@@ -2,8 +2,10 @@
 #include "LevelLayer.h"
 #include "LevelSelectPage.h"
 #include "UIScene.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
 #define LAYER_NUM (3)
 
@@ -68,5 +70,7 @@ bool LevelScene::init()
 
 void LevelScene::menuCloseCallback(Ref* pSender)
 {
+	SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+
 	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, UIScene::createScene()));
 }

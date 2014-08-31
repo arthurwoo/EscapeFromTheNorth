@@ -1,7 +1,10 @@
 #include "LoadingResScene.h"
 #include "UIScene.h"
+#include "SimpleAudioEngine.h"
 
-LoadingResScene::LoadingResScene(): numberOfLoadedRes(0), totalOfLoadedRes(11), progressBar(NULL)
+using namespace CocosDenshion;
+
+LoadingResScene::LoadingResScene(): numberOfLoadedRes(0), totalOfLoadedRes(14), progressBar(NULL)
 {
 }
 
@@ -34,7 +37,7 @@ bool LoadingResScene::init()
 
 void LoadingResScene::transitionScene()
 {
-	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, UIScene::createScene()));
+	Director::getInstance()->replaceScene(TransitionFade::create(0.1f, UIScene::createScene()));
 }
 
 ProgressTimer* LoadingResScene::addProgress()
@@ -58,6 +61,12 @@ ProgressTimer* LoadingResScene::addProgress()
 
 void LoadingResScene::loadResources()
 {
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(FileUtils::getInstance()->fullPathForFilename("sound/theme.mp3").c_str());
+	numberOfLoadedRes++;
+	SimpleAudioEngine::getInstance()->preloadEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str());
+	numberOfLoadedRes++;
+	SimpleAudioEngine::getInstance()->preloadEffect(FileUtils::getInstance()->fullPathForFilename("sound/appear.wav").c_str());
+	numberOfLoadedRes++;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Play.plist");
 	numberOfLoadedRes++;
 
@@ -80,11 +89,13 @@ void LoadingResScene::loadingCallback(Texture2D* texture)
 
 void LoadingResScene::logic(float dt)
 {
-	float percent = (float)numberOfLoadedRes / (float)totalOfLoadedRes;
+	float percent = (float)numberOfLoadedRes / (float)totalOfLoadedRes * 100;
 	progressBar->setPercentage(percent);
 
 	if(numberOfLoadedRes == totalOfLoadedRes)
 	{
 		transitionScene();
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(FileUtils::getInstance()->fullPathForFilename("sound/theme.mp3").c_str(), true);
+        SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5f);
 	}
 }

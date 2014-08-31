@@ -57,6 +57,7 @@ private:
 	void enemyIntoHouse();
 
 	void initToolLayer();
+	void menuBackCallback(Ref* pSender);
 };
 
 #endif
