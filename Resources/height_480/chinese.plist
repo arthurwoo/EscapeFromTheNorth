@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>money</key>
+	<string>金钱：</string>
+	<key>wave</key>
+	<string>第%d波/共%d波</string>
+</dict>
+</plist>
