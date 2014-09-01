@@ -8,6 +8,8 @@
 #include "LoadLevelInfo.h"
 #include "SimpleAudioEngine.h"
 #include "LevelScene.h"
+#include "SuccessScene.h"
+#include "FailScene.h"
 
 using namespace CocosDenshion;
 
@@ -261,14 +263,17 @@ void PlayLayer::update(float dt)
 			star = 3;
 
 		if(star > UserDefault::getInstance()->getIntegerForKey(instance->getCurLevelFile().c_str()))
+		{
 			UserDefault::getInstance()->setIntegerForKey(instance->getCurLevelFile().c_str(), star);
+			auto levelNum = UserDefault::getInstance()->getIntegerForKey("levelNum") + 1;
+			UserDefault::getInstance()->setIntegerForKey("levelNum", levelNum);
+		}
+
+		auto nextLevel = instance->getNextLevelFile();
+		UserDefault::getInstance()->setStringForKey("nextLevelFile", nextLevel);
 
 		instance->clear();
-		Size winSize = Director::getInstance()->getWinSize();
-		auto label = Label::createWithBMFont("fonts/boundsTestFont.fnt", "Congratulations!");
-		label->setPosition(Point(winSize.width / 2, winSize.height / 2));
-		label->setScale(1.5);
-		this->addChild(label);
+		Director::getInstance()->replaceScene(TransitionFade::create(0.1f, SuccessScene::create()));
 	}
 }
 
@@ -412,12 +417,7 @@ void PlayLayer::enemyIntoHouse()
 		else
 		{
 			instance->clear();
-			this->removeAllChildren();
-			Size winSize = Director::getInstance()->getWinSize();
-			Sprite* loseSprite = Sprite::create("GameOver.png");
-			loseSprite->setPosition(Point(winSize.width / 2, winSize.height / 2));
-			this->setScale(1.5);
-			this->addChild(loseSprite);
+			Director::getInstance()->replaceScene(TransitionFade::create(0.1f, FailScene::create()));
 		}
 	}
 }

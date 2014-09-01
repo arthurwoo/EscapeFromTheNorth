@@ -135,6 +135,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\EnemyBase.cpp" />
+    <ClCompile Include="..\Classes\FailScene.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
     <ClCompile Include="..\Classes\Ghost.cpp" />
     <ClCompile Include="..\Classes\GroupEnemy.cpp" />
@@ -146,6 +147,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\LoadLevelInfo.cpp" />
     <ClCompile Include="..\Classes\PlayLayer.cpp" />
     <ClCompile Include="..\Classes\SoldierTower.cpp" />
+    <ClCompile Include="..\Classes\SuccessScene.cpp" />
     <ClCompile Include="..\Classes\TowerBase.cpp" />
     <ClCompile Include="..\Classes\TowerPanelLayer.cpp" />
     <ClCompile Include="..\Classes\UIScene.cpp" />
@@ -154,6 +156,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\EnemyBase.h" />
+    <ClInclude Include="..\Classes\FailScene.h" />
     <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\Ghost.h" />
     <ClInclude Include="..\Classes\GroupEnemy.h" />
@@ -165,6 +168,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\LoadLevelInfo.h" />
     <ClInclude Include="..\Classes\PlayLayer.h" />
     <ClInclude Include="..\Classes\SoldierTower.h" />
+    <ClInclude Include="..\Classes\SuccessScene.h" />
     <ClInclude Include="..\Classes\TowerBase.h" />
     <ClInclude Include="..\Classes\TowerPanelLayer.h" />
     <ClInclude Include="..\Classes\UIScene.h" />
