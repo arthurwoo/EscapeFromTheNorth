@@ -9,6 +9,8 @@ bool SoldierTower::init()
 	setRange(100);
 	setPower(20);
 	setRate(2);
+	setLv(1);
+	setMaxLv(3);
 
 	tower = Sprite::createWithSpriteFrameName("soldierDown_2.png");
 	this->addChild(tower);

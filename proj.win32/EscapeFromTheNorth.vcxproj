@@ -149,6 +149,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\SoldierTower.cpp" />
     <ClCompile Include="..\Classes\SuccessScene.cpp" />
     <ClCompile Include="..\Classes\TowerBase.cpp" />
+    <ClCompile Include="..\Classes\TowerHandleLayer.cpp" />
     <ClCompile Include="..\Classes\TowerPanelLayer.cpp" />
     <ClCompile Include="..\Classes\UIScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,6 +171,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\SoldierTower.h" />
     <ClInclude Include="..\Classes\SuccessScene.h" />
     <ClInclude Include="..\Classes\TowerBase.h" />
+    <ClInclude Include="..\Classes\TowerHandleLayer.h" />
     <ClInclude Include="..\Classes\TowerPanelLayer.h" />
     <ClInclude Include="..\Classes\UIScene.h" />
     <ClInclude Include="main.h" />

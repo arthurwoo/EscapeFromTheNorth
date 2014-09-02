@@ -1,7 +1,7 @@
 #include "TowerBase.h"
 #include "GameManager.h"
 
-TowerBase::TowerBase(): range(0), power(0), rate(0), nearestEnemy(NULL)
+TowerBase::TowerBase(): range(0), power(0), rate(0), nearestEnemy(NULL), lv(1), maxLv(1)
 {
 }
 
@@ -55,4 +55,12 @@ Animation* TowerBase::createAnimation(std::string prefixName, int framesNum, flo
 	}
 
 	return Animation::createWithSpriteFrames(animFrames, delay);
+}
+
+void TowerBase::upgradeTower()
+{
+	if(lv >= maxLv)
+		return;
+
+	setLv(lv + 1);
 }

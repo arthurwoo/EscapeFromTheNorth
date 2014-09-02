@@ -15,7 +15,7 @@ using namespace CocosDenshion;
 
 PlayLayer::PlayLayer():spriteSheet(NULL), map(NULL), objects(NULL), pointsVector(NULL), money(0), 
 						chooseTowerPanel(NULL), towerMatrix(NULL), groupCounter(0), isSuccessful(false), playerHp(100),
-						playerHpBar(NULL), moneyLabel(NULL), groupLabel(NULL), playerHpBg(NULL)
+						playerHpBar(NULL), moneyLabel(NULL), groupLabel(NULL), playerHpBg(NULL), handleTowerPanel(NULL)
 {
 }
 
@@ -142,6 +142,9 @@ void PlayLayer::addTower()
 		{
 			tower = SoldierTower::create();
 			money -= 50;
+
+			ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
+			moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
 		}
 		else
 		{
@@ -169,6 +172,12 @@ bool PlayLayer::onTouchBegan(Touch* touch, Event* event)
 	{
 		this->removeChild(chooseTowerPanel);
 		chooseTowerPanel = NULL;
+	}
+
+	if(handleTowerPanel != NULL)
+	{
+		this->removeChild(handleTowerPanel);
+		handleTowerPanel = NULL;
 	}
 
 	auto size = toolLayer->getChildByTag(1)->getContentSize();
@@ -206,9 +215,12 @@ void PlayLayer::checkAndAddTowerPanel(Point position)
 	towerPos = Point(towerCoord.x * tileWidth + tileWidth / 2 - offX, 
 						map->getContentSize().height - towerCoord.y * tileHeight - tileHeight / 2);
 
-	if(touchValue && !towerMatrix[matrixIndex])
+	if(touchValue)
 	{
-		addTowerChoosePanel(towerPos);
+		if(!towerMatrix[matrixIndex])
+			addTowerChoosePanel(towerPos);
+		else
+			addTowerHandlePanel(towerPos);
 	}
 	else
 	{
@@ -241,12 +253,20 @@ void PlayLayer::addTowerChoosePanel(Point position)
 {
 	chooseTowerPanel = TowerPanelLayer::create();
 	chooseTowerPanel->setPosition(position);
-	this->addChild(chooseTowerPanel);
+	this->addChild(chooseTowerPanel, 99);
+}
+
+void PlayLayer::addTowerHandlePanel(Point position)
+{
+	handleTowerPanel = TowerHandleLayer::create();
+	handleTowerPanel->setPosition(position);
+	this->addChild(handleTowerPanel, 99);
 }
 
 void PlayLayer::update(float dt)
 {
 	addTower();
+	handleTower();
 	collideDetection();
 	enemyIntoHouse();
 
@@ -484,4 +504,43 @@ void PlayLayer::menuBackCallback(Ref* pSender)
 
 	instance->clear();
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LevelScene::create()));
+}
+
+void PlayLayer::handleTower()
+{
+	if(!handleTowerPanel)
+		return;
+
+	auto funcName = handleTowerPanel->getFuncName();
+	if(funcName == TowerFunc::NOTHING)
+		return;
+
+	Point matrixCoord = convertToMatrixCoord(towerPos);
+	int matrixIndex = static_cast<int>(matrixCoord.y * MAP_WIDTH + matrixCoord.x);
+	TowerBase* tower = towerMatrix[matrixIndex];
+	if(!tower)
+		return;
+
+	if(funcName == TowerFunc::UPGRADE)
+	{
+		auto lv = tower->getLv();
+		if(money >= lv * 50)
+		{
+			money -= lv * 50;
+			ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
+			moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
+
+			tower->upgradeTower();
+		}
+	}
+	else if(funcName == TowerFunc::DESTROY)
+	{
+		this->removeChild(tower);
+		towerMatrix[matrixIndex] = NULL;
+	}
+
+	funcName = TowerFunc::NOTHING;
+	handleTowerPanel->setFuncName(funcName);
+	this->removeChild(handleTowerPanel);
+	handleTowerPanel = NULL;
 }

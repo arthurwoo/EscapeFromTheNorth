@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "TowerPanelLayer.h"
 #include "GameManager.h"
+#include "TowerHandleLayer.h"
 
 USING_NS_CC;
 
@@ -38,6 +39,7 @@ private:
 	TowerBase** towerMatrix;
 	GameManager* instance;
 	TowerPanelLayer* chooseTowerPanel;
+	TowerHandleLayer* handleTowerPanel;
 	Layer* toolLayer;
 	Label* moneyLabel;
 	Label* groupLabel;
@@ -48,11 +50,13 @@ private:
 	void initPointsVector(float offX);
 	void addEnemy();
 	void addTower();
+	void handleTower();
 
 	Point convertToTileCoord(Point position);
 	Point convertToMatrixCoord(Point position);
 	void checkAndAddTowerPanel(Point position);
 	void addTowerChoosePanel(Point position);
+	void addTowerHandlePanel(Point position);
 	void collideDetection();
 	void enemyIntoHouse();
 
