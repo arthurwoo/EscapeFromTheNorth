@@ -30,9 +30,6 @@
     <ClCompile Include="..\Classes\Ghost.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\SoldierTower.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerBase.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Ghost.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SoldierTower.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerBase.h">

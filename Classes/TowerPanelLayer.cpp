@@ -11,7 +11,7 @@ bool TowerPanelLayer::init()
 	sprite->setPosition(Point(0, 0));
 	this->addChild(sprite);
 
-	sprite1 = Sprite::createWithSpriteFrameName("soldierDown_2.png");
+	sprite1 = Sprite::createWithSpriteFrameName("soldierDown1_2.png");
 	sprite1->setAnchorPoint(Point(0, 0));
 	sprite1->setPosition(Point(0, sprite->getContentSize().height));
 	sprite->addChild(sprite1);

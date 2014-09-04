@@ -3,7 +3,6 @@
 
 #include "PlayLayer.h"
 #include "Ghost.h"
-#include "SoldierTower.h"
 #include "GameManager.h"
 #include "LoadLevelInfo.h"
 #include "SimpleAudioEngine.h"
@@ -140,7 +139,8 @@ void PlayLayer::addTower()
 	{
 		if(money >= 50)
 		{
-			tower = SoldierTower::create();
+			tower = TowerBase::create();
+			tower->setTowerInfo("soldier");
 			money -= 50;
 
 			ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");

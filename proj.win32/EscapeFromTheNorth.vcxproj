@@ -146,7 +146,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\LoadingResScene.cpp" />
     <ClCompile Include="..\Classes\LoadLevelInfo.cpp" />
     <ClCompile Include="..\Classes\PlayLayer.cpp" />
-    <ClCompile Include="..\Classes\SoldierTower.cpp" />
     <ClCompile Include="..\Classes\SuccessScene.cpp" />
     <ClCompile Include="..\Classes\TowerBase.cpp" />
     <ClCompile Include="..\Classes\TowerHandleLayer.cpp" />
@@ -168,7 +167,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\LoadingResScene.h" />
     <ClInclude Include="..\Classes\LoadLevelInfo.h" />
     <ClInclude Include="..\Classes\PlayLayer.h" />
-    <ClInclude Include="..\Classes\SoldierTower.h" />
     <ClInclude Include="..\Classes\SuccessScene.h" />
     <ClInclude Include="..\Classes\TowerBase.h" />
     <ClInclude Include="..\Classes\TowerHandleLayer.h" />

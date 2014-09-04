@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>soldier</key>
+	<dict>
+		<key>range</key>
+		<integer>100</integer>
+		<key>power</key>
+		<integer>20</integer>
+		<key>rate</key>
+		<integer>2</integer>
+		<key>lv</key>
+		<integer>1</integer>
+		<key>maxLv</key>
+		<integer>3</integer>
+		<key>defaultImage</key>
+		<string>soldierDown1_2.png</string>
+		<key>lv1Animation</key>
+		<dict>
+			<key>animationLeft</key>
+			<string>soldierLeft1</string>
+			<key>animationRight</key>
+			<string>soldierRight1</string>
+			<key>animationUp</key>
+			<string>soldierUp1</string>
+			<key>animationDown</key>
+			<string>soldierDown1</string>
+		</dict>
+		<key>lv2Animation</key>
+		<dict>
+			<key>animationLeft</key>
+			<string>soldierLeft2</string>
+			<key>animationRight</key>
+			<string>soldierRight2</string>
+			<key>animationUp</key>
+			<string>soldierUp2</string>
+			<key>animationDown</key>
+			<string>soldierDown2</string>
+		</dict>
+		<key>lv3Animation</key>
+		<dict>
+			<key>animationLeft</key>
+			<string>soldierLeft1</string>
+			<key>animationRight</key>
+			<string>soldierRight1</string>
+			<key>animationUp</key>
+			<string>soldierUp1</string>
+			<key>animationDown</key>
+			<string>soldierDown1</string>
+		</dict>
+		<key>bulletImage</key>
+		<string>bullet_1.png</string>
+	</dict>
+</dict>
+</plist>
