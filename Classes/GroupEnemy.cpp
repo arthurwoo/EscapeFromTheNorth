@@ -10,11 +10,15 @@ bool GroupEnemy::init()
 	return true;
 }
 
-GroupEnemy* GroupEnemy::initGroupEnemy(int type1Num, int type1Hp)
+GroupEnemy* GroupEnemy::initGroupEnemy(ValueMap group)
 {
-	this->type1Num = type1Num;
-	this->type1Hp = type1Hp;
-	this->enemyTotal = type1Num;
+	this->enemyTotal = 0;
+	for(auto git = group.begin(); git != group.end(); git++)
+	{
+		this->typeMap[git->first] = git->second.asValueMap();
+		this->enemyTotal += git->second.asValueMap()["typeNum"].asInt();
+	}
+	
 	this->isFinishedAddedGroup = false;
 
 	return this;

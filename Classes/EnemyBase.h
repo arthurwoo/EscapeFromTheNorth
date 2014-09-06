@@ -19,8 +19,9 @@ public:
 	Node* nextPoint();
 	void runFollowPoint();
 	void setPointsVector(Vector<Node*> points);
-	virtual void changeDirection(float dt){};
-	virtual void enemyExplode(){};
+	virtual void changeDirection(float dt);
+	virtual void enemyExplode();
+	void setEnemyInfo(std::string enemyName, Vector<Node*> points);
 
 	void createAndSetHpBar();
 
@@ -40,6 +41,7 @@ protected:
 	CC_SYNTHESIZE(float, hpPercent, HpPercent);
 	CC_SYNTHESIZE(ProgressTimer*, hpBar, HpBar);
 	CC_SYNTHESIZE(bool, enemySuccessful, EnemySuccessful);
+	CC_SYNTHESIZE(std::string, enemyName, EnemyName);
 	Sprite* sprite;
 	Sprite* hpBgSprite;
 

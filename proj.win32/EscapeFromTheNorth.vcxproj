@@ -137,7 +137,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\EnemyBase.cpp" />
     <ClCompile Include="..\Classes\FailScene.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
-    <ClCompile Include="..\Classes\Ghost.cpp" />
     <ClCompile Include="..\Classes\GroupEnemy.cpp" />
     <ClCompile Include="..\Classes\LevelInfoScene.cpp" />
     <ClCompile Include="..\Classes\LevelLayer.cpp" />
@@ -158,7 +157,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\EnemyBase.h" />
     <ClInclude Include="..\Classes\FailScene.h" />
     <ClInclude Include="..\Classes\GameManager.h" />
-    <ClInclude Include="..\Classes\Ghost.h" />
     <ClInclude Include="..\Classes\GroupEnemy.h" />
     <ClInclude Include="..\Classes\LevelInfoScene.h" />
     <ClInclude Include="..\Classes\LevelLayer.h" />

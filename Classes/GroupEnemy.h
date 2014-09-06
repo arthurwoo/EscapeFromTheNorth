@@ -8,11 +8,10 @@ class GroupEnemy: public cocos2d::Node
 {
 public:
 	virtual bool init();
-	GroupEnemy* initGroupEnemy(int type1Num, int type1Hp);
+	GroupEnemy* initGroupEnemy(ValueMap group);
 	CREATE_FUNC(GroupEnemy);
 
-	CC_SYNTHESIZE(int, type1Num, Type1Num);
-	CC_SYNTHESIZE(int, type1Hp, Type1Hp);
+	CC_SYNTHESIZE(ValueMap, typeMap, TypeMap);
 	CC_SYNTHESIZE(int, enemyTotal, EnemyTotal);
 	CC_SYNTHESIZE(int, isFinishedAddedGroup, IsFinishAddedGroup);
 

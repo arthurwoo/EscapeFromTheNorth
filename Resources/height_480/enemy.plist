@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ghost</key>
+	<dict>
+		<key>mhp</key>
+		<integer>100</integer>
+		<key>hp</key>
+		<integer>100</integer>
+		<key>speed</key>
+		<integer>20</integer>
+		<key>defaultImage</key>
+		<string>ghostDown_2.png</string>
+		<key>animationLeft</key>
+		<string>ghostLeft</string>
+		<key>animationRight</key>
+		<string>ghostRight</string>
+		<key>animationUp</key>
+		<string>ghostUp</string>
+		<key>animationDown</key>
+		<string>ghostDown</string>
+		<key>animationExplode</key>
+		<string>ghostExplode</string>
+	</dict>
+	<key>slime</key>
+	<dict>
+		<key>mhp</key>
+		<integer>100</integer>
+		<key>hp</key>
+		<integer>100</integer>
+		<key>speed</key>
+		<integer>20</integer>
+		<key>defaultImage</key>
+		<string>slimeDown_2.png</string>
+		<key>animationLeft</key>
+		<string>slimeLeft</string>
+		<key>animationRight</key>
+		<string>slimeRight</string>
+		<key>animationUp</key>
+		<string>slimeUp</string>
+		<key>animationDown</key>
+		<string>slimeDown</string>
+		<key>animationExplode</key>
+		<string>slimeDown</string>
+	</dict>
+</dict>
+</plist>

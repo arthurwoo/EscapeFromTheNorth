@@ -7,11 +7,11 @@
 		<key>money</key>
 		<integer>400</integer>
 		<key>curLevel</key>
-		<string>levelInfo_0.plist</string>
+		<string>levelInfo_1.plist</string>
 		<key>nextLevel</key>
 		<string>levelInfo_1.plist</string>
 		<key>levelDesc</key>
-		<string>第1关：测试</string>
+		<string>第2关：又测试</string>
 		<key>group</key>
 		<dict>
 			<key>1</key>
@@ -23,13 +23,6 @@
 					<key>typeName</key>
 					<string>ghost</string>
 				</dict>
-				<key>2</key>
-				<dict>
-					<key>typeNum</key>
-					<integer>2</integer>
-					<key>typeName</key>
-					<string>slime</string>
-				</dict>
 			</dict>
 			<key>2</key>
 			<dict>
@@ -40,7 +33,30 @@
 					<key>typeName</key>
 					<string>slime</string>
 				</dict>
-				<key>2</key>
+			</dict>
+			<key>3</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>typeNum</key>
+					<integer>2</integer>
+					<key>typeName</key>
+					<string>ghost</string>
+				</dict>
+			</dict>
+			<key>4</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>typeNum</key>
+					<integer>2</integer>
+					<key>typeName</key>
+					<string>slime</string>
+				</dict>
+			</dict>
+			<key>5</key>
+			<dict>
+				<key>1</key>
 				<dict>
 					<key>typeNum</key>
 					<integer>2</integer>

@@ -25,6 +25,7 @@ $RECYCLE.BIN/
 /proj.win32/Debug.win32
 /proj.win32/TestResults
 *.sdf
+*.opensdf
 
 # cocos
 /cocos2d

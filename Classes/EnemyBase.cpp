@@ -17,6 +17,36 @@ bool EnemyBase::init()
 	return true;
 }
 
+void EnemyBase::setEnemyInfo(std::string enemyName, Vector<Node*> points)
+{
+	ValueMap enemyInfo = FileUtils::getInstance()->getValueMapFromFile("enemy.plist")[enemyName].asValueMap();
+
+	setMhp(enemyInfo["mhp"].asInt());
+	setHp(enemyInfo["hp"].asInt());
+	setRunSpeed(enemyInfo["speed"].asInt());
+	setEnemyName(enemyName);
+	setPointsVector(points);
+
+	sprite = Sprite::createWithSpriteFrameName(enemyInfo["defaultImage"].asString());
+	this->addChild(sprite);
+
+	animationLeft = createAnimation(enemyInfo["animationLeft"].asString(), 3, 0.1f);
+	AnimationCache::getInstance()->addAnimation(animationLeft, enemyName + "runleft");
+	animationRight = createAnimation(enemyInfo["animationRight"].asString(), 3, 0.1f);
+	AnimationCache::getInstance()->addAnimation(animationRight, enemyName + "runright");
+	animationUp = createAnimation(enemyInfo["animationUp"].asString(), 3, 0.1f);
+	AnimationCache::getInstance()->addAnimation(animationUp, enemyName + "runup");
+	animationDown = createAnimation(enemyInfo["animationDown"].asString(), 3, 0.1f);
+	AnimationCache::getInstance()->addAnimation(animationDown, enemyName + "rundown");
+	animationExplode = createAnimation(enemyInfo["animationExplode"].asString(), 3, 0.1f);
+	AnimationCache::getInstance()->addAnimation(animationExplode, enemyName + "explode");
+
+	createAndSetHpBar();
+	schedule(schedule_selector(EnemyBase::changeDirection), 0.3f);
+
+	runFollowPoint();
+}
+
 Node* EnemyBase::curPoint()
 {
 	if(this->pointsVector.size() > 0)
@@ -91,4 +121,44 @@ void EnemyBase::createAndSetHpBar()
 	hpBar->setPercentage(hpPercent);
 	hpBar->setPosition(Point(hpBgSprite->getContentSize().width / 2, hpBgSprite->getContentSize().height / 2));
 	hpBgSprite->addChild(hpBar);
+}
+
+void EnemyBase::changeDirection(float dt)
+{
+	auto cur = curPoint();
+
+	if(cur == NULL)
+		return;
+
+	Point spritePosition = sprite->getPosition();
+
+	if(cur->getPositionY() > spritePosition.y)
+	{
+		sprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(getEnemyName() + "runup")));
+	}
+	else if(cur->getPositionY() < spritePosition.y)
+	{
+		sprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(getEnemyName() + "rundown")));
+	}
+	else
+	{
+		if(cur->getPositionX() > spritePosition.x)
+		{
+			sprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(getEnemyName() + "runright")));
+		}
+		else if(cur->getPositionX() < spritePosition.x)
+		{
+			sprite->runAction(Animate::create(AnimationCache::getInstance()->getAnimation(getEnemyName() + "runleft")));
+		}
+	}
+}
+
+void EnemyBase::enemyExplode()
+{
+	sprite->stopAllActions();
+	unschedule(schedule_selector(EnemyBase::changeDirection));
+	sprite->setAnchorPoint(Point(0.5f, 0.25f));
+	sprite->runAction(Sequence::create(Animate::create(AnimationCache::getInstance()->getAnimation(getEnemyName() + "explode")),
+						CallFuncN::create(CC_CALLBACK_0(EnemyBase::removeFromParent, this)),
+						NULL));
 }

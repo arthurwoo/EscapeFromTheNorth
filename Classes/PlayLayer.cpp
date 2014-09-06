@@ -2,7 +2,6 @@
 #define MAP_HEIGHT (15)
 
 #include "PlayLayer.h"
-#include "Ghost.h"
 #include "GameManager.h"
 #include "LoadLevelInfo.h"
 #include "SimpleAudioEngine.h"
@@ -110,13 +109,24 @@ void PlayLayer::addEnemy()
 
 	EnemyBase* enemy = NULL;
 
-	if(groupEnemy->getType1Num() > 0)
+	ValueMap typeMap = groupEnemy->getTypeMap();
+	for(auto it = typeMap.begin(); it != typeMap.end(); it++)
 	{
-		SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/appear.wav").c_str(), false);
+		ValueMap& gInfo = it->second.asValueMap();
+		int typeNum = gInfo["typeNum"].asInt();
+		std::string typeName = gInfo["typeName"].asString();
+		if(typeNum > 0)
+		{
+			SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/appear.wav").c_str(), false);
 
-		enemy = Ghost::createGhost(pointsVector, groupEnemy->getType1Hp());
-		groupEnemy->setType1Num(groupEnemy->getType1Num() - 1);
+			enemy = EnemyBase::create();
+			enemy->setEnemyInfo(typeName, pointsVector);
+
+			gInfo["typeNum"] = typeNum - 1;
+			break;
+		}
 	}
+	groupEnemy->setTypeMap(typeMap);
 
 	this->addChild(enemy, 10);
 	instance->enemyVector.pushBack(enemy);

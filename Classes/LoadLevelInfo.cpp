@@ -63,10 +63,7 @@ void LoadLevelInfo::readLevelInfo()
 	for(auto it = groupDict.begin(); it != groupDict.end(); it++)
 	{
 		ValueMap& group = it->second.asValueMap();
-		auto type1Num = group["type1Num"].asInt();
-		auto type1Hp = group["type1Hp"].asInt();
-
-		GroupEnemy* groupEnemy = GroupEnemy::create()->initGroupEnemy(type1Num, type1Hp);
+		GroupEnemy* groupEnemy = GroupEnemy::create()->initGroupEnemy(group);
 		instance->groupVector.pushBack(groupEnemy);
 	}
 

@@ -27,9 +27,6 @@
     <ClCompile Include="..\Classes\GameManager.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Ghost.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerBase.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameManager.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Ghost.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerBase.h">

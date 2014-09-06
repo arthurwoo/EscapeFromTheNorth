@@ -7,7 +7,7 @@
 		<key>range</key>
 		<integer>100</integer>
 		<key>power</key>
-		<integer>20</integer>
+		<integer>100</integer>
 		<key>rate</key>
 		<integer>2</integer>
 		<key>lv</key>
