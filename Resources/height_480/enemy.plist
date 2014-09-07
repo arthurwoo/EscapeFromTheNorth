@@ -5,11 +5,13 @@
 	<key>ghost</key>
 	<dict>
 		<key>mhp</key>
-		<integer>100</integer>
+		<integer>20</integer>
 		<key>hp</key>
-		<integer>100</integer>
+		<integer>20</integer>
 		<key>speed</key>
 		<integer>20</integer>
+		<key>money</key>
+		<integer>35</integer>
 		<key>defaultImage</key>
 		<string>ghostDown_2.png</string>
 		<key>animationLeft</key>
@@ -26,11 +28,13 @@
 	<key>slime</key>
 	<dict>
 		<key>mhp</key>
-		<integer>100</integer>
+		<integer>15</integer>
 		<key>hp</key>
-		<integer>100</integer>
+		<integer>15</integer>
 		<key>speed</key>
 		<integer>20</integer>
+		<key>money</key>
+		<integer>25</integer>
 		<key>defaultImage</key>
 		<string>slimeDown_2.png</string>
 		<key>animationLeft</key>

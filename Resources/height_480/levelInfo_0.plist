@@ -5,13 +5,13 @@
 	<key>levelInfo</key>
 	<dict>
 		<key>money</key>
-		<integer>400</integer>
+		<integer>100</integer>
 		<key>curLevel</key>
 		<string>levelInfo_0.plist</string>
 		<key>nextLevel</key>
 		<string>levelInfo_1.plist</string>
 		<key>levelDesc</key>
-		<string>第1关：测试</string>
+		<string>序章：迷途</string>
 		<key>group</key>
 		<dict>
 			<key>1</key>
@@ -19,14 +19,14 @@
 				<key>1</key>
 				<dict>
 					<key>typeNum</key>
-					<integer>2</integer>
+					<integer>5</integer>
 					<key>typeName</key>
 					<string>ghost</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>typeNum</key>
-					<integer>2</integer>
+					<integer>5</integer>
 					<key>typeName</key>
 					<string>slime</string>
 				</dict>
@@ -36,14 +36,14 @@
 				<key>1</key>
 				<dict>
 					<key>typeNum</key>
-					<integer>2</integer>
+					<integer>5</integer>
 					<key>typeName</key>
 					<string>slime</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>typeNum</key>
-					<integer>2</integer>
+					<integer>10</integer>
 					<key>typeName</key>
 					<string>ghost</string>
 				</dict>
@@ -53,7 +53,9 @@
 	<key>resources</key>
 	<dict>
 		<key>map</key>
-		<string>test.tmx</string>
+		<string>level_0.tmx</string>
+		<key>bgm</key>
+		<string>sound/battle_1.mp3</string>
 	</dict>
 </dict>
 </plist>

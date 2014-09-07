@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="23" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles_1" tilewidth="32" tileheight="32">
+  <image source="tiles_1.png" width="832" height="192"/>
+  <tile id="30">
+   <properties>
+    <property name="canTouch" value="1"/>
+   </properties>
+  </tile>
+  <tile id="133">
+   <properties>
+    <property name="canTouch" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="bg" width="23" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyd1EEOwVAQxvEu2WMl6cJeGzbaE6gQihOUDaqXaM9QPa55yUzyZUwfsfhHSP2m770SBUEQcTE15UIqoVL4zLXi1xZaU1twrNB25ok6K/sIvlSwn3lmxOA680lVyikNv2X/AjMywxZXm7/4L5hxUfaSmig3VFl+omZIvj3fUwejnOeIfzLOIPXY7rs36k41kHv/gHWUfC64BtnXb7Y4cj81zMiNPZJnq/rDHvGZ1ODrNch5WfbAaMjuAs7c8jF0d9Sm575n1Dz4fKbEt85cu9cfbe03RrgXzu08tvW/gc+s/j3gNZ26Ruwp20WPP1G+5Juv77vltWnf7c3Y6A0+k1Dm
+  </data>
+ </layer>
+ <layer name="ft" width="23" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAE9mj8aCB2AuJSLGpJAfZYzI6BmutEodnoQAiIhfHIR5NpLkifDhDrook5o/HR/UkIOONwE8icWCxi0TjUo4NoqH5S3UNNgB4+5AJccRrLQH58wgB6nFIKEqB4uAJKw5uQ2YTyLy43EJPOYXGNyw/YyilKAABwSA2w
+  </data>
+ </layer>
+ <objectgroup name="obj" width="23" height="15">
+  <object name="0" x="256" y="480"/>
+  <object name="1" x="256" y="320"/>
+  <object name="2" x="256" y="224"/>
+  <object name="3" x="288" y="192"/>
+  <object name="4" x="416" y="192"/>
+  <object name="5" x="416" y="224"/>
+  <object name="6" x="480" y="256"/>
+  <object name="7" x="512" y="288"/>
+  <object name="8" x="544" y="320"/>
+  <object name="9" x="576" y="352"/>
+  <object name="10" x="736" y="352"/>
+ </objectgroup>
+</map>

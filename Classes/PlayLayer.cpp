@@ -1,4 +1,4 @@
-#define MAP_WIDTH (20)
+#define MAP_WIDTH (23)
 #define MAP_HEIGHT (15)
 
 #include "PlayLayer.h"
@@ -45,6 +45,9 @@ bool PlayLayer::init()
 	bgLayer = map->getLayer("bg");
 	bgLayer->setAnchorPoint(Point(0.5f, 0.5f));
 	bgLayer->setPosition(Point(winSize.width / 2, winSize.height / 2));
+	ftLayer = map->getLayer("ft");
+	ftLayer->setAnchorPoint(Point(0.5f, 0.5f));
+	ftLayer->setPosition(Point(winSize.width / 2, winSize.height / 2));
 	objects = map->getObjectGroup("obj");
 	this->addChild(map, -1);
 
@@ -234,6 +237,8 @@ void PlayLayer::checkAndAddTowerPanel(Point position)
 	}
 	else
 	{
+		SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/cancel.wav").c_str(), false);
+
 		auto tips = Sprite::createWithSpriteFrameName("no.png");
 		tips->setPosition(towerPos);
 		this->addChild(tips);
@@ -357,6 +362,10 @@ void PlayLayer::collideDetection()
 
 				if(curHp <= 0)
 				{
+					money += enemy->getMoney();
+					ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
+					moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
+
 					enemyToDelete.pushBack(enemy);
 				}
 				

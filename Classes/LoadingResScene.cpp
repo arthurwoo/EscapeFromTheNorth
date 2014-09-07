@@ -4,7 +4,7 @@
 
 using namespace CocosDenshion;
 
-LoadingResScene::LoadingResScene(): numberOfLoadedRes(0), totalOfLoadedRes(14), progressBar(NULL)
+LoadingResScene::LoadingResScene(): numberOfLoadedRes(0), totalOfLoadedRes(16), progressBar(NULL)
 {
 }
 
@@ -63,9 +63,13 @@ void LoadingResScene::loadResources()
 {
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(FileUtils::getInstance()->fullPathForFilename("sound/theme.mp3").c_str());
 	numberOfLoadedRes++;
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(FileUtils::getInstance()->fullPathForFilename("sound/battle_1.mp3").c_str());
+	numberOfLoadedRes++;
 	SimpleAudioEngine::getInstance()->preloadEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str());
 	numberOfLoadedRes++;
 	SimpleAudioEngine::getInstance()->preloadEffect(FileUtils::getInstance()->fullPathForFilename("sound/appear.wav").c_str());
+	numberOfLoadedRes++;
+	SimpleAudioEngine::getInstance()->preloadEffect(FileUtils::getInstance()->fullPathForFilename("sound/cancel.wav").c_str());
 	numberOfLoadedRes++;
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Play.plist");
 	numberOfLoadedRes++;

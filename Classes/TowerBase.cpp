@@ -22,25 +22,25 @@ void TowerBase::setTowerInfo(std::string towerName)
 {
 	ValueMap towerInfo = FileUtils::getInstance()->getValueMapFromFile("tower.plist")[towerName].asValueMap();
 
+	ValueMap lvInfo = towerInfo["lv" + std::to_string(getLv()) + "Info"].asValueMap();
+
 	setTowerName(towerName);
-	setRange(towerInfo["range"].asInt());
-	setPower(towerInfo["power"].asInt());
-	setRate(towerInfo["rate"].asInt());
+	setRange(lvInfo["range"].asInt());
+	setPower(lvInfo["power"].asInt());
+	setRate(lvInfo["rate"].asInt());
 	setLv(towerInfo["lv"].asInt());
 	setMaxLv(towerInfo["maxLv"].asInt());
 
 	tower = Sprite::createWithSpriteFrameName(towerInfo["defaultImage"].asString());
-	this->addChild(tower);
+	this->addChild(tower);	
 
-	ValueMap lvAnimation = towerInfo["lv" + std::to_string(getLv()) + "Animation"].asValueMap();
-
-	animationLeft = createAnimation(lvAnimation["animationLeft"].asString(), 3, 0.1f);
+	animationLeft = createAnimation(lvInfo["animationLeft"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationLeft, towerName + "runleft" + std::to_string(getLv()));
-	animationRight = createAnimation(lvAnimation["animationRight"].asString(), 3, 0.1f);
+	animationRight = createAnimation(lvInfo["animationRight"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationRight, towerName + "runright" + std::to_string(getLv()));
-	animationUp = createAnimation(lvAnimation["animationUp"].asString(), 3, 0.1f);
+	animationUp = createAnimation(lvInfo["animationUp"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationUp, towerName + "runup" + std::to_string(getLv()));
-	animationDown = createAnimation(lvAnimation["animationDown"].asString(), 3, 0.1f);
+	animationDown = createAnimation(lvInfo["animationDown"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationDown, towerName + "rundown" + std::to_string(getLv()));
 
 	this->towerInfo = towerInfo;
@@ -95,15 +95,19 @@ void TowerBase::upgradeTower()
 
 	setLv(lv + 1);
 
-	ValueMap lvAnimation = towerInfo["lv" + std::to_string(getLv()) + "Animation"].asValueMap();
+	ValueMap lvInfo = towerInfo["lv" + std::to_string(getLv()) + "Info"].asValueMap();
 
-	animationLeft = createAnimation(lvAnimation["animationLeft"].asString(), 3, 0.1f);
+	setRange(lvInfo["range"].asInt());
+	setPower(lvInfo["power"].asInt());
+	setRate(lvInfo["rate"].asInt());
+
+	animationLeft = createAnimation(lvInfo["animationLeft"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationLeft, towerName + "runleft" + std::to_string(getLv()));
-	animationRight = createAnimation(lvAnimation["animationRight"].asString(), 3, 0.1f);
+	animationRight = createAnimation(lvInfo["animationRight"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationRight, towerName + "runright" + std::to_string(getLv()));
-	animationUp = createAnimation(lvAnimation["animationUp"].asString(), 3, 0.1f);
+	animationUp = createAnimation(lvInfo["animationUp"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationUp, towerName + "runup" + std::to_string(getLv()));
-	animationDown = createAnimation(lvAnimation["animationDown"].asString(), 3, 0.1f);
+	animationDown = createAnimation(lvInfo["animationDown"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationDown, towerName + "rundown" + std::to_string(getLv()));
 }
 

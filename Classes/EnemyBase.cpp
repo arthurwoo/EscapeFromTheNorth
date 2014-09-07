@@ -24,6 +24,7 @@ void EnemyBase::setEnemyInfo(std::string enemyName, Vector<Node*> points)
 	setMhp(enemyInfo["mhp"].asInt());
 	setHp(enemyInfo["hp"].asInt());
 	setRunSpeed(enemyInfo["speed"].asInt());
+	setMoney(enemyInfo["money"].asInt());
 	setEnemyName(enemyName);
 	setPointsVector(points);
 

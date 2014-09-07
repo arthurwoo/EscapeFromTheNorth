@@ -29,6 +29,7 @@ private:
 	SpriteBatchNode* spriteSheet;
 	TMXTiledMap* map;
 	TMXLayer* bgLayer;
+	TMXLayer* ftLayer;
 	TMXObjectGroup* objects;
 	Vector<Node*> pointsVector;
 	float offX;

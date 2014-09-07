@@ -83,6 +83,11 @@ void LevelInfoScene::menuStartCallback(Ref* pSender)
 	info = LoadLevelInfo::createLoadLevelInfo(fileName.c_str());
 	info->readLevelInfo();
 	Director::getInstance()->replaceScene(TransitionFadeBL::create(0.5f, PlayLayer::createScene()));
+
+	std::string fullPath = FileUtils::getInstance()->fullPathForFilename(fileName.c_str());
+	ValueMap resource = FileUtils::getInstance()->getValueMapFromFile(fullPath)["resources"].asValueMap();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic(FileUtils::getInstance()->fullPathForFilename(resource["bgm"].asString()).c_str(), true);
+    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5f);
 }
 
 void LevelInfoScene::menuBackCallback(Ref* pSender)

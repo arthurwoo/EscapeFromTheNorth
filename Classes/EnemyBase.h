@@ -42,6 +42,7 @@ protected:
 	CC_SYNTHESIZE(ProgressTimer*, hpBar, HpBar);
 	CC_SYNTHESIZE(bool, enemySuccessful, EnemySuccessful);
 	CC_SYNTHESIZE(std::string, enemyName, EnemyName);
+	CC_SYNTHESIZE(int, money, Money);
 	Sprite* sprite;
 	Sprite* hpBgSprite;
 

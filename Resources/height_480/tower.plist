@@ -4,20 +4,20 @@
 <dict>
 	<key>soldier</key>
 	<dict>
-		<key>range</key>
-		<integer>100</integer>
-		<key>power</key>
-		<integer>100</integer>
-		<key>rate</key>
-		<integer>2</integer>
 		<key>lv</key>
 		<integer>1</integer>
 		<key>maxLv</key>
 		<integer>3</integer>
 		<key>defaultImage</key>
 		<string>soldierDown1_2.png</string>
-		<key>lv1Animation</key>
+		<key>lv1Info</key>
 		<dict>
+			<key>range</key>
+			<integer>50</integer>
+			<key>power</key>
+			<integer>5</integer>
+			<key>rate</key>
+			<integer>1</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft1</string>
 			<key>animationRight</key>
@@ -27,8 +27,14 @@
 			<key>animationDown</key>
 			<string>soldierDown1</string>
 		</dict>
-		<key>lv2Animation</key>
+		<key>lv2Info</key>
 		<dict>
+			<key>range</key>
+			<integer>60</integer>
+			<key>power</key>
+			<integer>15</integer>
+			<key>rate</key>
+			<integer>2</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft2</string>
 			<key>animationRight</key>
@@ -38,8 +44,14 @@
 			<key>animationDown</key>
 			<string>soldierDown2</string>
 		</dict>
-		<key>lv3Animation</key>
+		<key>lv3Info</key>
 		<dict>
+			<key>range</key>
+			<integer>70</integer>
+			<key>power</key>
+			<integer>30</integer>
+			<key>rate</key>
+			<integer>2</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft1</string>
 			<key>animationRight</key>
