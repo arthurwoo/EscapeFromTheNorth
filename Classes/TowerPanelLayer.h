@@ -9,6 +9,7 @@ USING_NS_CC;
 typedef enum
 {
 	SOLDIER_TOWER = 0,
+	KNIGHT_TOWER,
 	OTHER
 } TowerType;
 
@@ -25,6 +26,7 @@ public:
 
 private:
 	Sprite* sprite1;
+	Sprite* sprite2;
 
 };
 

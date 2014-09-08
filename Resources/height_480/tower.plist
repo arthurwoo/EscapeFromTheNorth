@@ -10,6 +10,10 @@
 		<integer>3</integer>
 		<key>defaultImage</key>
 		<string>soldierDown1_2.png</string>
+		<key>attackType</key>
+		<string>near</string>
+		<key>bulletImage</key>
+		<string>bullet_2.png</string>
 		<key>lv1Info</key>
 		<dict>
 			<key>range</key>
@@ -18,6 +22,8 @@
 			<integer>5</integer>
 			<key>rate</key>
 			<integer>1</integer>
+			<key>price</key>
+			<integer>50</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft1</string>
 			<key>animationRight</key>
@@ -35,6 +41,8 @@
 			<integer>15</integer>
 			<key>rate</key>
 			<integer>2</integer>
+			<key>price</key>
+			<integer>50</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft2</string>
 			<key>animationRight</key>
@@ -52,6 +60,8 @@
 			<integer>30</integer>
 			<key>rate</key>
 			<integer>2</integer>
+			<key>price</key>
+			<integer>50</integer>
 			<key>animationLeft</key>
 			<string>soldierLeft1</string>
 			<key>animationRight</key>
@@ -61,8 +71,76 @@
 			<key>animationDown</key>
 			<string>soldierDown1</string>
 		</dict>
+	</dict>
+	<key>knight</key>
+	<dict>
+		<key>lv</key>
+		<integer>1</integer>
+		<key>maxLv</key>
+		<integer>3</integer>
+		<key>defaultImage</key>
+		<string>knightDown1_2.png</string>
+		<key>attackType</key>
+		<string>far</string>
 		<key>bulletImage</key>
 		<string>bullet_1.png</string>
+		<key>lv1Info</key>
+		<dict>
+			<key>range</key>
+			<integer>50</integer>
+			<key>power</key>
+			<integer>5</integer>
+			<key>rate</key>
+			<integer>1</integer>
+			<key>price</key>
+			<integer>50</integer>
+			<key>animationLeft</key>
+			<string>knightLeft1</string>
+			<key>animationRight</key>
+			<string>knightRight1</string>
+			<key>animationUp</key>
+			<string>knightUp1</string>
+			<key>animationDown</key>
+			<string>knightDown1</string>
+		</dict>
+		<key>lv2Info</key>
+		<dict>
+			<key>range</key>
+			<integer>60</integer>
+			<key>power</key>
+			<integer>15</integer>
+			<key>rate</key>
+			<integer>2</integer>
+			<key>price</key>
+			<integer>50</integer>
+			<key>animationLeft</key>
+			<string>knightLeft2</string>
+			<key>animationRight</key>
+			<string>knightRight2</string>
+			<key>animationUp</key>
+			<string>knightUp2</string>
+			<key>animationDown</key>
+			<string>knightDown2</string>
+		</dict>
+		<key>lv3Info</key>
+		<dict>
+			<key>range</key>
+			<integer>70</integer>
+			<key>power</key>
+			<integer>30</integer>
+			<key>rate</key>
+			<integer>2</integer>
+			<key>price</key>
+			<integer>50</integer>
+			<key>animationLeft</key>
+			<string>knightLeft1</string>
+			<key>animationRight</key>
+			<string>knightRight1</string>
+			<key>animationUp</key>
+			<string>knightUp1</string>
+			<key>animationDown</key>
+			<string>knightDown1</string>
+		</dict>
 	</dict>
 </dict>
 </plist>

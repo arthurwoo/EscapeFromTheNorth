@@ -1,7 +1,7 @@
 #include "TowerBase.h"
 #include "GameManager.h"
 
-TowerBase::TowerBase(): range(0), power(0), rate(0), nearestEnemy(NULL), lv(1), maxLv(1)
+TowerBase::TowerBase(): range(0), power(0), rate(0), nearestEnemy(NULL), lv(1), maxLv(1), info(NULL), atkType("")
 {
 }
 
@@ -30,6 +30,8 @@ void TowerBase::setTowerInfo(std::string towerName)
 	setRate(lvInfo["rate"].asInt());
 	setLv(towerInfo["lv"].asInt());
 	setMaxLv(towerInfo["maxLv"].asInt());
+	setAtkType(towerInfo["attackType"].asString());
+	setInfo(towerInfo);
 
 	tower = Sprite::createWithSpriteFrameName(towerInfo["defaultImage"].asString());
 	this->addChild(tower);	
@@ -42,8 +44,6 @@ void TowerBase::setTowerInfo(std::string towerName)
 	AnimationCache::getInstance()->addAnimation(animationUp, towerName + "runup" + std::to_string(getLv()));
 	animationDown = createAnimation(lvInfo["animationDown"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationDown, towerName + "rundown" + std::to_string(getLv()));
-
-	this->towerInfo = towerInfo;
 
 	schedule(schedule_selector(TowerBase::attack), 1.0f);
 	schedule(schedule_selector(TowerBase::changeDirection), 0.3f);
@@ -88,14 +88,14 @@ Animation* TowerBase::createAnimation(std::string prefixName, int framesNum, flo
 	return Animation::createWithSpriteFrames(animFrames, delay);
 }
 
-void TowerBase::upgradeTower()
+bool TowerBase::upgradeTower()
 {
 	if(lv >= maxLv)
-		return;
+		return false;
 
 	setLv(lv + 1);
 
-	ValueMap lvInfo = towerInfo["lv" + std::to_string(getLv()) + "Info"].asValueMap();
+	ValueMap lvInfo = getInfo()["lv" + std::to_string(getLv()) + "Info"].asValueMap();
 
 	setRange(lvInfo["range"].asInt());
 	setPower(lvInfo["power"].asInt());
@@ -109,11 +109,13 @@ void TowerBase::upgradeTower()
 	AnimationCache::getInstance()->addAnimation(animationUp, towerName + "runup" + std::to_string(getLv()));
 	animationDown = createAnimation(lvInfo["animationDown"].asString(), 3, 0.1f);
 	AnimationCache::getInstance()->addAnimation(animationDown, towerName + "rundown" + std::to_string(getLv()));
+
+	return true;
 }
 
 Sprite* TowerBase::towerBullet()
 {
-	Sprite* bullet = Sprite::createWithSpriteFrameName(this->towerInfo["bulletImage"].asString());
+	Sprite* bullet = Sprite::createWithSpriteFrameName(getInfo()["bulletImage"].asString());
 	bullet->setPosition(0, tower->getContentSize().height / 2);
 	this->addChild(bullet);
 
@@ -130,17 +132,25 @@ void TowerBase::attack(float dt)
 		auto curBullet = towerBullet();
 		instance->bulletVector.pushBack(curBullet);
 
-		auto moveDuration = getRate();
-		Point shootVector = nearestEnemy->sprite->getPosition() - this->getPosition();
-		Point normalizedShootVector = -shootVector.normalize();
+		auto attackType = getAtkType();
+		if(attackType == ATK_TYPE_NEAR)
+		{
+			curBullet->setPosition(nearestEnemy->sprite->getPosition() - this->getPosition());
+		}
+		else if(attackType == ATK_TYPE_FAR)
+		{
+			auto moveDuration = getRate();
+			Point shootVector = nearestEnemy->sprite->getPosition() - this->getPosition();
+			Point normalizedShootVector = -shootVector.normalize();
 
-		auto farthestDistance = Director::getInstance()->getWinSize().width;
-		Point overshotVector = normalizedShootVector * farthestDistance;
-		Point offscreenPoint = curBullet->getPosition() - overshotVector;
+			auto farthestDistance = Director::getInstance()->getWinSize().width;
+			Point overshotVector = normalizedShootVector * farthestDistance;
+			Point offscreenPoint = curBullet->getPosition() - overshotVector;
 
-		curBullet->runAction(Sequence::create(MoveTo::create(moveDuration, offscreenPoint),
-								CallFuncN::create(CC_CALLBACK_1(TowerBase::removeBullet, this)),
-								NULL));
+			curBullet->runAction(Sequence::create(MoveTo::create(moveDuration, offscreenPoint),
+									CallFuncN::create(CC_CALLBACK_1(TowerBase::removeBullet, this)),
+									NULL));
+		}
 
 		curBullet = NULL;
 	}

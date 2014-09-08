@@ -15,7 +15,7 @@
  </tileset>
  <layer name="bg" width="23" height="15">
   <data encoding="base64" compression="zlib">
-   eJyd1EEOwVAQxvEu2WMl6cJeGzbaE6gQihOUDaqXaM9QPa55yUzyZUwfsfhHSP2m770SBUEQcTE15UIqoVL4zLXi1xZaU1twrNB25ok6K/sIvlSwn3lmxOA680lVyikNv2X/AjMywxZXm7/4L5hxUfaSmig3VFl+omZIvj3fUwejnOeIfzLOIPXY7rs36k41kHv/gHWUfC64BtnXb7Y4cj81zMiNPZJnq/rDHvGZ1ODrNch5WfbAaMjuAs7c8jF0d9Sm575n1Dz4fKbEt85cu9cfbe03RrgXzu08tvW/gc+s/j3gNZ26Ruwp20WPP1G+5Juv77vltWnf7c3Y6A0+k1Dm
+   eJydlDsOgkAQhrfUXq1IKOyFaCOcQIzGB55AbFT0EnIG5LjOJjPJn3FcjcUXwmb55rVL4pxLmJSImJjIiBzWPHN+tsCCWIHHAt3eWRIH5d6DXziyvwjESMHrnTfirjy14W/ZX0GMwnCLVzt/8T8hRqXcM2KkvLHC8mcqhhDq+YbYGuw4jvhLYwZ5wO2/PRMXogH8+xXqqHkuWIP09ZtbPJLPg2NI/rpHcrbuf7gHPJMH1yD9wRpkXpa7Z9Bn7xRmbvkR9K6J5Ye8x8TEvZ8p8Vsz197Tj27tbwywF97bBdzWfwPPrL4PuKdTe8Qdsfto+CV36/6G4uu8W67N8g8NXvtUUNA=
   </data>
  </layer>
  <layer name="ft" width="23" height="15">

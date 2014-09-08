@@ -6,6 +6,9 @@
 
 USING_NS_CC;
 
+const std::string ATK_TYPE_NEAR = "near";
+const std::string ATK_TYPE_FAR = "far";
+
 class TowerBase: public Sprite
 {
 public:
@@ -25,11 +28,13 @@ public:
 	CC_SYNTHESIZE(int, rate, Rate); //攻击速率
 	CC_SYNTHESIZE(int, lv, Lv); //等级
 	CC_SYNTHESIZE(int, maxLv, MaxLv); //最大等级
+	CC_SYNTHESIZE(ValueMap, info, Info);
+	CC_SYNTHESIZE(std::string, atkType, AtkType); //攻击方式
 
 	virtual void changeDirection(float dt);
 	Animation* createAnimation(std::string prefixName, int framesNum, float delay);
 
-	void upgradeTower();
+	bool upgradeTower();
 	void attack(float dt);
 	void removeBullet(Node* pSender);
 	Sprite* towerBullet();
@@ -43,7 +48,6 @@ protected:
 
 private:
 	Sprite* tower;
-	ValueMap towerInfo;
 
 };
 

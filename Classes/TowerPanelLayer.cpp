@@ -11,10 +11,15 @@ bool TowerPanelLayer::init()
 	sprite->setPosition(Point(0, 0));
 	this->addChild(sprite);
 
-	sprite1 = Sprite::createWithSpriteFrameName("soldierDown1_2.png");
+	sprite1 = Sprite::createWithSpriteFrameName("soldierBtn.png");
 	sprite1->setAnchorPoint(Point(0, 0));
-	sprite1->setPosition(Point(0, sprite->getContentSize().height));
+	sprite1->setPosition(Point(-sprite->getContentSize().width, sprite->getContentSize().height));
 	sprite->addChild(sprite1);
+
+	sprite2 = Sprite::createWithSpriteFrameName("knightBtn.png");
+	sprite2->setAnchorPoint(Point(0, 0));
+	sprite2->setPosition(Point(sprite->getContentSize().width, sprite->getContentSize().height));
+	sprite->addChild(sprite2);
 
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->setSwallowTouches(true);
@@ -22,6 +27,7 @@ bool TowerPanelLayer::init()
 	touchListener->onTouchEnded = CC_CALLBACK_2(TowerPanelLayer::onTouchEnded, this);
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, sprite1);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener->clone(), sprite2);
 
 	return true;
 }
@@ -49,6 +55,8 @@ void TowerPanelLayer::onTouchEnded(Touch* touch, Event* event)
 
 	if(target == sprite1)
 		chooseType = SOLDIER_TOWER;
+	else if(target == sprite2)
+		chooseType = KNIGHT_TOWER;
 	else
 		chooseType = OTHER;
 }

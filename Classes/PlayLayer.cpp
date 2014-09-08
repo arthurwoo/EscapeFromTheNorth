@@ -146,24 +146,31 @@ void PlayLayer::addTower()
 
 	Point matrixCoord = convertToMatrixCoord(towerPos);
 	int matrixIndex = static_cast<int>(matrixCoord.y * MAP_WIDTH + matrixCoord.x);
-	bool noMoneyTips = false;
 	TowerBase* tower = NULL;
+
+	int price = 0;
 	if(type == TowerType::SOLDIER_TOWER)
 	{
-		if(money >= 50)
+		price = FileUtils::getInstance()->getValueMapFromFile("tower.plist")["soldier"].asValueMap()["lv1Info"].asValueMap()["price"].asInt();
+		if(money >= price)
 		{
 			tower = TowerBase::create();
 			tower->setTowerInfo("soldier");
-			money -= 50;
-
-			ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
-			moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
-		}
-		else
-		{
-			noMoneyTips = true;
 		}
 	}
+	else if(type == TowerType::KNIGHT_TOWER)
+	{
+		price = FileUtils::getInstance()->getValueMapFromFile("tower.plist")["knight"].asValueMap()["lv1Info"].asValueMap()["price"].asInt();
+		if(money >= price)
+		{
+			tower = TowerBase::create();
+			tower->setTowerInfo("knight");
+		}
+	}
+	
+	money -= price;
+	ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
+	moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
 
 	if(tower)
 	{
@@ -543,13 +550,16 @@ void PlayLayer::handleTower()
 	if(funcName == TowerFunc::UPGRADE)
 	{
 		auto lv = tower->getLv();
-		if(money >= lv * 50)
+		int price = tower->getInfo()["lv" + std::to_string(lv + 1) + "Info"].asValueMap()["price"].asInt();
+		if(money >= price)
 		{
-			money -= lv * 50;
-			ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
-			moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
-
-			tower->upgradeTower();
+			bool succ = tower->upgradeTower();
+			if(succ)
+			{
+				money -= price;
+				ValueMap chineseDict = FileUtils::getInstance()->getValueMapFromFile("chinese.plist");
+				moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
+			}
 		}
 	}
 	else if(funcName == TowerFunc::DESTROY)
