@@ -6,5 +6,7 @@
 	<string>金钱：</string>
 	<key>wave</key>
 	<string>第%d波/共%d波</string>
+	<key>hp</key>
+	<string>生命：</string>
 </dict>
 </plist>

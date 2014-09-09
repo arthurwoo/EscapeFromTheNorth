@@ -4,6 +4,10 @@
 <dict>
 	<key>ghost</key>
 	<dict>
+		<key>name</key>
+		<string>幽灵</string>
+		<key>desc</key>
+		<string>被惊扰的孤魂野鬼，看上去不怎么厉害</string>
 		<key>mhp</key>
 		<integer>20</integer>
 		<key>hp</key>
@@ -27,6 +31,10 @@
 	</dict>
 	<key>slime</key>
 	<dict>
+		<key>name</key>
+		<string>史莱姆</string>
+		<key>desc</key>
+		<string>黏糊糊的果冻一样的怪物</string>
 		<key>mhp</key>
 		<integer>15</integer>
 		<key>hp</key>

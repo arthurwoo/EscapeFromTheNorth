@@ -13,7 +13,8 @@ using namespace CocosDenshion;
 
 PlayLayer::PlayLayer():spriteSheet(NULL), map(NULL), objects(NULL), pointsVector(NULL), money(0), 
 						chooseTowerPanel(NULL), towerMatrix(NULL), groupCounter(0), isSuccessful(false), playerHp(100),
-						playerHpBar(NULL), moneyLabel(NULL), groupLabel(NULL), playerHpBg(NULL), handleTowerPanel(NULL)
+						playerHpBar(NULL), moneyLabel(NULL), groupLabel(NULL), playerHpBg(NULL), handleTowerPanel(NULL),
+						enemyInfoPanel(NULL)
 {
 }
 
@@ -200,6 +201,12 @@ bool PlayLayer::onTouchBegan(Touch* touch, Event* event)
 		handleTowerPanel = NULL;
 	}
 
+	if(enemyInfoPanel != NULL)
+	{
+		this->removeChild(enemyInfoPanel);
+		enemyInfoPanel = NULL;
+	}
+
 	auto size = toolLayer->getChildByTag(1)->getContentSize();
 	Rect toolRect = Rect(offX,  toolLayer->getChildByTag(1)->getPositionY() - size.height,
 							size.width, size.height);
@@ -207,7 +214,19 @@ bool PlayLayer::onTouchBegan(Touch* touch, Event* event)
 	if(toolRect.containsPoint(convertTouchToNodeSpace(touch)))
 		return false;
 
-	
+	for(auto it = instance->enemyVector.begin(); it != instance->enemyVector.end(); it++)
+	{
+		EnemyBase* enemy = static_cast<EnemyBase*>(*it);
+		if(enemy->sprite->getBoundingBox().containsPoint(convertTouchToNodeSpace(touch)))
+		{
+			enemyInfoPanel = EnemyInfoLayer::create();
+			ValueMap enemyInfo = FileUtils::getInstance()->getValueMapFromFile("enemy.plist")[enemy->getEnemyName()].asValueMap();
+			enemyInfoPanel->setEnemyInfo(enemy->getEnemyName(), enemyInfo);
+			this->addChild(enemyInfoPanel, 99);
+			return false;
+		}
+	}
+
 	auto location = touch->getLocation();
 	checkAndAddTowerPanel(location);
 

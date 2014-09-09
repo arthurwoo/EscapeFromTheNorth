@@ -66,6 +66,9 @@
     <ClCompile Include="..\Classes\TowerHandleLayer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\EnemyInfoLayer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -120,6 +123,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerHandleLayer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemyInfoLayer.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

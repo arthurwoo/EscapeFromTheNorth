@@ -5,6 +5,7 @@
 #include "TowerPanelLayer.h"
 #include "GameManager.h"
 #include "TowerHandleLayer.h"
+#include "EnemyInfoLayer.h"
 
 USING_NS_CC;
 
@@ -41,6 +42,7 @@ private:
 	GameManager* instance;
 	TowerPanelLayer* chooseTowerPanel;
 	TowerHandleLayer* handleTowerPanel;
+	EnemyInfoLayer* enemyInfoPanel;
 	Layer* toolLayer;
 	Label* moneyLabel;
 	Label* groupLabel;
