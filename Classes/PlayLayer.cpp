@@ -14,7 +14,7 @@ using namespace CocosDenshion;
 PlayLayer::PlayLayer():spriteSheet(NULL), map(NULL), objects(NULL), pointsVector(NULL), money(0), 
 						chooseTowerPanel(NULL), towerMatrix(NULL), groupCounter(0), isSuccessful(false), playerHp(100),
 						playerHpBar(NULL), moneyLabel(NULL), groupLabel(NULL), playerHpBg(NULL), handleTowerPanel(NULL),
-						enemyInfoPanel(NULL)
+						enemyInfoPanel(NULL), rangeSprite(NULL)
 {
 }
 
@@ -207,6 +207,12 @@ bool PlayLayer::onTouchBegan(Touch* touch, Event* event)
 		enemyInfoPanel = NULL;
 	}
 
+	if(rangeSprite != NULL)
+	{
+		this->removeChild(rangeSprite);
+		rangeSprite = NULL;
+	}
+
 	auto size = toolLayer->getChildByTag(1)->getContentSize();
 	Rect toolRect = Rect(offX,  toolLayer->getChildByTag(1)->getPositionY() - size.height,
 							size.width, size.height);
@@ -257,9 +263,14 @@ void PlayLayer::checkAndAddTowerPanel(Point position)
 	if(touchValue)
 	{
 		if(!towerMatrix[matrixIndex])
+		{
 			addTowerChoosePanel(towerPos);
+		}
 		else
+		{
+			drawRange(towerMatrix[matrixIndex]);
 			addTowerHandlePanel(towerPos);
+		}
 	}
 	else
 	{
@@ -580,15 +591,38 @@ void PlayLayer::handleTower()
 				moneyLabel->setString(chineseDict["money"].asString() + std::to_string(money));
 			}
 		}
+		drawRange(tower);
 	}
 	else if(funcName == TowerFunc::DESTROY)
 	{
 		this->removeChild(tower);
 		towerMatrix[matrixIndex] = NULL;
+
+		if(rangeSprite != NULL)
+		{
+			this->removeChild(rangeSprite);
+			rangeSprite = NULL;
+		}
 	}
 
 	funcName = TowerFunc::NOTHING;
 	handleTowerPanel->setFuncName(funcName);
 	this->removeChild(handleTowerPanel);
 	handleTowerPanel = NULL;
+}
+
+void PlayLayer::drawRange(TowerBase* tower)
+{
+	if(rangeSprite != NULL)
+	{
+		this->removeChild(rangeSprite);
+		rangeSprite = NULL;
+	}
+
+	rangeSprite = Sprite::create("circle.png");
+	float radius = tower->getRange() * 2.0;
+	rangeSprite->setScale(radius / rangeSprite->getContentSize().width);
+	rangeSprite->setAnchorPoint(Point(0.5, 0.5));
+	rangeSprite->setPosition(towerPos);
+	this->addChild(rangeSprite, tower->getZOrder() - 1);
 }

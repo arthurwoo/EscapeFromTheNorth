@@ -47,6 +47,7 @@ private:
 	Label* moneyLabel;
 	Label* groupLabel;
 	Sprite* playerHpBg;
+	Sprite* rangeSprite;
 	CC_SYNTHESIZE(float, playerHp, PlayerHp);
 	CC_SYNTHESIZE_READONLY(ProgressTimer*, playerHpBar, PlayerHpBar);
 
@@ -60,6 +61,7 @@ private:
 	void checkAndAddTowerPanel(Point position);
 	void addTowerChoosePanel(Point position);
 	void addTowerHandlePanel(Point position);
+	void drawRange(TowerBase* tower);
 	void collideDetection();
 	void enemyIntoHouse();
 
